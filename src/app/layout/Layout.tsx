@@ -1,9 +1,9 @@
 import AppContext from '../../utils/contexts/AppContext';
 import { useEffect, useState } from 'react';
 import { Language, Location, ThemeVariant } from '../../utils/types/Types';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { Theme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import theme from '../../utils/theme';
+import getTheme from '../../utils/theme';
 
 interface layoutProps {
   children: Object;
@@ -56,19 +56,21 @@ const Layout = ({ children }: layoutProps) => {
     setLanguage(getUserLanguage());
   }, [authenticated]);
 
+  // const [themeVariant, setThemeVariant] = useState<Theme>(() => getTheme(ThemeVariant.dark));
   const [themeVariant, setThemeVariant] = useState<ThemeVariant>(() => ThemeVariant.dark);
+  const getThemeVariant = (v: ThemeVariant): Theme => {
+    //  TODO: implement getThemeVariant
+
+    return getTheme(v);
+  };
   useEffect(() => {
     /*
      * if user is authenticated get themeVariant from
      * user profile from backend else get and/or set
      * from browser cookie
      * */
-    const getThemeVariant = () => {
-      //  TODO: implement getThemeVariant
-
-      return ThemeVariant.dark;
-    };
-    setThemeVariant(getThemeVariant);
+    const v: ThemeVariant = ThemeVariant.dark;
+    setThemeVariant(v);
   }, []);
 
   return (
@@ -80,7 +82,7 @@ const Layout = ({ children }: layoutProps) => {
         themeVariant,
       }}
     >
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={getThemeVariant(themeVariant)}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
 

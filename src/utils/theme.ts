@@ -1,31 +1,34 @@
-import { createMuiTheme } from '@material-ui/core/styles';
-import { red, yellow, indigo, grey } from '@material-ui/core/colors';
+import { createMuiTheme, Theme } from '@material-ui/core/styles';
+import { ThemeVariant } from './types/Types';
+import { deepOrange, deepPurple, lightBlue, orange } from '@material-ui/core/colors';
 
-// Create a theme instance.
-const theme = createMuiTheme({
-  direction: 'rtl',
-  typography: {
-    fontFamily: '"Vazir", "Roboto", "Helvetica", "Arial", sans-serif',
-  },
-  palette: {
-    primary: {
-      main: yellow[600],
-      dark: '#c6a700',
-      light: '#ffff6b',
-      contrastText: grey[900],
+const getTheme = (variant: ThemeVariant): Theme => {
+  return createMuiTheme({
+    direction: 'rtl',
+    typography: {
+      fontFamily: '"Vazir", "Roboto", "Helvetica", "Arial", sans-serif',
     },
-    secondary: {
-      main: indigo[100],
-      dark: '#9499b7',
-      light: '#f8fdff',
-      contrastText: '#141c69',
-    },
+    palette:
+      variant === ThemeVariant.dark
+        ? {
+            type: 'dark',
+            primary: {
+              main: orange[500],
+            },
+            secondary: {
+              main: deepOrange[900],
+            },
+          }
+        : {
+            type: 'light',
+            primary: {
+              main: lightBlue[500],
+            },
+            secondary: {
+              main: deepPurple[500],
+            },
+          },
+  });
+};
 
-    error: red,
-    background: {
-      default: '#fff',
-    },
-  },
-});
-
-export default theme;
+export default getTheme;
