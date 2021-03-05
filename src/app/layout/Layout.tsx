@@ -1,6 +1,9 @@
 import AppContext from '../../utils/contexts/AppContext';
 import { useEffect, useState } from 'react';
 import { Language, Location, ThemeVariant } from '../../utils/types/Types';
+import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import theme from '../../utils/theme';
 
 interface layoutProps {
   children: Object;
@@ -77,7 +80,12 @@ const Layout = ({ children }: layoutProps) => {
         themeVariant,
       }}
     >
-      {children}
+      <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+
+        {children}
+      </ThemeProvider>
     </AppContext.Provider>
   );
 };
