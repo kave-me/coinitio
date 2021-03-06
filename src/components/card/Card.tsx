@@ -10,8 +10,7 @@ import lineChartPic from '../../assets/images/lineChart.png';
 const useStyles = makeStyles(() => ({
   container: {
     width: '300px',
-    border: '2px solid rgba(255,255,255,.2)',
-    borderRadius: '5px',
+    borderLeft: '2px dashed rgba(200,10,10,.3)',
   },
   arrowUp: {
     fill: green[500],
@@ -34,7 +33,11 @@ type Coin = {
   imgUrl: string;
   priceChange24h: number;
 };
-const CoinCard = () => {
+
+interface CoinCardProps {
+  tokenName: string;
+}
+const CoinCard = ({ tokenName = 'N/A' }: CoinCardProps) => {
   const [coin, setCoin] = useState<Coin>({
     name: 'undefined',
     symbol: 'NA',
@@ -43,16 +46,19 @@ const CoinCard = () => {
     priceChange24h: 0,
   });
   useEffect(() => {
-    axios.get('https://api.coingecko.com/api/v3/coins/bitcoin').then(r => {
-      console.log(r);
-      setCoin({
-        name: r.data.name,
-        symbol: r.data.symbol,
-        price: r.data.market_data.current_price.usd,
-        imgUrl: r.data.image.thumb,
-        priceChange24h: r.data.market_data.price_change_24h_in_currency.usd,
-      });
-    });
+    axios
+      .get(`https://api.coingecko.com/api/v3/coins/${tokenName}`)
+      .then(r => {
+        console.log(r);
+        setCoin({
+          name: r.data.name,
+          symbol: r.data.symbol,
+          price: r.data.market_data.current_price.usd,
+          imgUrl: r.data.image.thumb,
+          priceChange24h: r.data.market_data.price_change_24h_in_currency.usd,
+        });
+      })
+      .catch(err => console.log(err));
   }, []);
   const styles = useStyles();
   return coin.name !== 'undefined' ? (
@@ -102,7 +108,7 @@ const CoinCardPrice = ({ price = 0 }: CoinCardPriceProps) => {
   return (
     <Grid justify={'center'} container alignContent={'center'} alignItems={'center'}>
       <Grid item>
-        <Typography variant={'h6'}>${price}</Typography>
+        <Typography variant={'h6'}>${price.toFixed(2)}</Typography>
       </Grid>
     </Grid>
   );
@@ -111,7 +117,7 @@ const CoinCardMiniChart = () => {
   const styles = useStyles();
   // TODO: generate chart using react-chart library and history data
   return (
-    <Grid alignItems={'center'} alignContent={'center'} justify={'center'}>
+    <Grid container alignItems={'center'} alignContent={'center'} justify={'center'}>
       <Grid item>
         <img className={styles.miniChart} src={lineChartPic} />
       </Grid>
@@ -137,15 +143,10 @@ const CoinCardPriceChange24h = ({ change = 0 }: CoinCardPriceChange24h) => {
         </Grid>
       )}
       <Grid item>
-        <p>${change}</p>
+        <p>${change.toFixed(3)}</p>
       </Grid>
     </Grid>
   );
 };
 
-// if there are other type of cards required return different cards through props condition
-const Card = () => {
-  return <CoinCard />;
-};
-
-export default Card;
+export default CoinCard;
