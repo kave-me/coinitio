@@ -10,7 +10,7 @@ import lineChartPic from '../../assets/images/lineChart.png';
 const useStyles = makeStyles(() => ({
   container: {
     width: '300px',
-    borderLeft: '2px dashed rgba(200,10,10,.3)',
+    borderLeft: '2px dashed rgba(242,94,54,.5)',
   },
   arrowUp: {
     fill: green[500],
@@ -118,7 +118,7 @@ const CoinCardMiniChart = () => {
   return (
     <Grid container alignItems={'center'} alignContent={'center'} justify={'center'}>
       <Grid item>
-        <img className={styles.miniChart} src={lineChartPic} />
+        <img className={styles.miniChart} src={lineChartPic} alt={'mini chart'} />
       </Grid>
     </Grid>
   );
