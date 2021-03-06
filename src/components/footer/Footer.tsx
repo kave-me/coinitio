@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Grid, Typography } from '@material-ui/core';
+import shortid from 'shortid';
 
 const useStyles = makeStyles(theme => ({
   footer: {
@@ -37,7 +38,7 @@ const Footer = () => {
             { name: 'link2', link: 'test' },
             { name: 'link3', link: 'test' },
           ].map(({ name, link }) => (
-            <Grid item key={link}>
+            <Grid item key={shortid.generate()}>
               <a href={link}>
                 <Typography color={'textPrimary'}>{name}</Typography>
               </a>
