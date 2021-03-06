@@ -18,9 +18,21 @@ function TradingViewChart() {
         vertAlign: 'bottom',
       },
       layout: {
-        backgroundColor: '#4B3F4B',
+        backgroundColor: '#303030',
         textColor: '#DEDEDE',
         fontSize: 12,
+      },
+      grid: {
+        vertLines: {
+          color: 'rgba(70, 130, 180, 0.5)',
+          style: 1,
+          visible: true,
+        },
+        horzLines: {
+          color: 'rgba(70, 130, 180, 0.5)',
+          style: 1,
+          visible: true,
+        },
       },
     });
 
