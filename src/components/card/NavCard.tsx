@@ -20,7 +20,7 @@ const settings = {
 
 const useStyles = makeStyles(() => ({
   container: {
-    width: '100vw',
+    width: '100%',
     paddingTop: '1rem',
   },
 }));
