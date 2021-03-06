@@ -49,7 +49,6 @@ const CoinCard = ({ tokenName = 'N/A' }: CoinCardProps) => {
     axios
       .get(`https://api.coingecko.com/api/v3/coins/${tokenName}`)
       .then(r => {
-        console.log(r);
         setCoin({
           name: r.data.name,
           symbol: r.data.symbol,
