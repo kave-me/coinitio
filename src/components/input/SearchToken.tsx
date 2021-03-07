@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       width: '50%',
       height: '4rem',
-      margin: '0 auto 3rem auto',
+      margin: '1rem auto 2rem auto',
     },
     input: {
       marginLeft: theme.spacing(1),
