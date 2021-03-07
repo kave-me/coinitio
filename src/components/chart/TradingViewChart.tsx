@@ -1,5 +1,6 @@
 import { RefObject, useEffect, useRef } from 'react';
 import { createChart } from 'lightweight-charts';
+import stockData from '../../utils/mock/btcHistory.json';
 
 function TradingViewChart() {
   const ref = useRef<HTMLElement | string>('');
@@ -38,8 +39,7 @@ function TradingViewChart() {
 
     const candlestickSeries = chart.addCandlestickSeries();
 
-    // set data
-    candlestickSeries.setData([
+    const stockData2 = [
       { time: '2018-12-19', open: 141.77, high: 170.39, low: 120.25, close: 145.72 },
       { time: '2018-12-20', open: 145.72, high: 147.99, low: 100.11, close: 108.19 },
       { time: '2018-12-21', open: 108.19, high: 118.43, low: 74.22, close: 75.16 },
@@ -53,7 +53,11 @@ function TradingViewChart() {
       { time: '2018-12-29', open: 131.33, high: 151.17, low: 77.68, close: 96.43 },
       { time: '2018-12-30', open: 106.33, high: 110.2, low: 90.39, close: 98.1 },
       { time: '2018-12-31', open: 109.87, high: 114.69, low: 85.66, close: 111.26 },
-    ]);
+    ];
+    console.log(stockData);
+    console.log(stockData2);
+    // set data
+    candlestickSeries.setData(stockData);
   }, []);
 
   return (
