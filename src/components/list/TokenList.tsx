@@ -43,6 +43,7 @@ export default function TokenList() {
           <List>
             {generate(
               <>
+                <Divider />
                 <ListItem>
                   <ListItemAvatar>
                     <Avatar>
@@ -56,7 +57,6 @@ export default function TokenList() {
                     </IconButton>
                   </ListItemSecondaryAction>
                 </ListItem>
-                <Divider />
               </>,
             )}
           </List>
