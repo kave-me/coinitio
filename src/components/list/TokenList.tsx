@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       margin: theme.spacing(4, 0, 2),
     },
+    item: {
+      paddingTop: '0',
+    },
   }),
 );
 
@@ -38,9 +41,9 @@ export default function TokenList() {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         <Grid item xs={12}>
-          <List>
+          <List classes={{ root: classes.item }}>
             {generate(
               <>
                 <Divider />
